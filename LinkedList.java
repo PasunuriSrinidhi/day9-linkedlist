@@ -5,14 +5,44 @@ public class LinkedList {
 
     Node head;
 
-    class Node {
+    class Node implements Comparable<Node> {
         Object data;
-        Node next;//next is a reference
+        Node next; // next is a reference
 
         public Node(Object data) {
             this.data = data;
         }
+
+        @Override
+        public int compareTo(Node otherNode) {
+            // Assuming the data is of type Integer for simplicity
+            return ((Integer) this.data).compareTo((Integer) otherNode.data);
+        }
     }
+
+    /*
+     * Add method for adding elements in ascending order
+     */
+    public void add(Object data) {
+        Node newNode = new Node(data);
+
+        if (head == null || head.compareTo(newNode) > 0) {
+            newNode.next = head;
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null && temp.next.compareTo(newNode) < 0) {
+                temp = temp.next;
+            }
+            newNode.next = temp.next;
+            temp.next = newNode;
+        }
+    }
+
+
+
+
+
 
     /*
     Ability to create Linked
@@ -194,6 +224,18 @@ to 70
             return count;
         }
     }
+    public static void main(String[] args) {
+        LinkedList sortedList = new LinkedList();
+        sortedList.add(56);
+        sortedList.add(30);
+        sortedList.add(40);
+        sortedList.add(70);
+
+        System.out.println("Final Sequence:");
+        sortedList.display();
+    
+}
+
 
 
 }
