@@ -1,50 +1,50 @@
-class Node {
-    int data;
-    Node next;
 
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-}
 
 public class LinkedList {
     Node head;
 
-    public LinkedList() {
-        this.head = null;
+    class Node {
+        Object data;
+        Node next;//next is a reference
+
+        public Node(Object data) {
+            this.data = data;
+        }
     }
 
-    public void append(int data) {
+   
+    public void addFirst(Object data) {
         Node newNode = new Node(data);
-        if (head == null) {
+        if (head == null)
             head = newNode;
-            return;
+        else {
+            newNode.next = head;
+            head = newNode;
         }
-        Node current = head;
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = newNode;
     }
 
+    
     public void display() {
-        Node current = head;
-        while (current != null) {
-            System.out.print(current.data + " -> ");
-            current = current.next;
+        if (head == null)
+            System.out.println("No elements to display");
+        else {
+            Node temp = head;
+            while (temp.next != null) {
+                System.out.print(temp.data + " -> ");
+                temp = temp.next;
+            }
+            System.out.println(temp.data);
         }
-        System.out.println("null");
     }
 
     public static void main(String[] args) {
-        // Creating a linked list with values 56, 30, and 70
+        System.out.println("Welcome To Linked list !!!!");
         LinkedList linkedList = new LinkedList();
-        linkedList.append(56);
-        linkedList.append(30);
-        linkedList.append(70);
-
-        // Displaying the linked list
+        linkedList.addFirst(70);
+        linkedList.addFirst(30);
+        linkedList.addFirst(56);
         linkedList.display();
+
+
     }
 }
