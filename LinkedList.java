@@ -13,15 +13,23 @@ public class LinkedList {
     }
 
    
-    public void addFirst(Object data) {
+   public void addLast(Object data) {
         Node newNode = new Node(data);
         if (head == null)
             head = newNode;
+        else if (head.next == null)
+            head.next = newNode;
         else {
-            newNode.next = head;
-            head = newNode;
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
         }
-    }
+    
+
+
+}
 
     
     public void display() {
@@ -40,9 +48,9 @@ public class LinkedList {
     public static void main(String[] args) {
         System.out.println("Welcome To Linked list !!!!");
         LinkedList linkedList = new LinkedList();
-        linkedList.addFirst(70);
-        linkedList.addFirst(30);
-        linkedList.addFirst(56);
+        linkedList.addLast(56);
+        linkedList.addLast(30);
+        linkedList.addLast(70);
         linkedList.display();
 
 
